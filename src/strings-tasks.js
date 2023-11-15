@@ -39,9 +39,9 @@ function getStringLength(value) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(value) {
-  // throw new Error('Not implemented');
-  return typeof value === 'string';
+function isString(/* value */) {
+  throw new Error('Not implemented');
+  // return typeof value === 'string';
 }
 
 /**
@@ -320,9 +320,9 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(str) {
-  // throw new Error('Not implemented');
-  return str === str.split('').reverse().join('');
+function isPalindrome(/* str */) {
+  throw new Error('Not implemented');
+  // return str === str.split('').reverse().join('');
 }
 
 /**
@@ -480,7 +480,7 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(value) {
+function getCardId(/* value */) {
   // const cardDeck = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
   //   'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
   //   'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
