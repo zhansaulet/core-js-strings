@@ -39,9 +39,9 @@ function getStringLength(value) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
-  // return typeof value === 'string';
+function isString(value) {
+  // throw new Error('Not implemented');
+  return typeof value === 'string' || value instanceof String;
 }
 
 /**
@@ -156,8 +156,13 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  // throw new Error('Not implemented');
+  const index = str.indexOf(value);
+  const len = value.length;
+  const res = index === -1 ? str : str.slice(0, index) + str.slice(index + len);
+
+  return res;
 }
 
 /**
@@ -172,8 +177,13 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
-function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeLastOccurrences(str, value) {
+  // throw new Error('Not implemented');
+  const index = str.lastIndexOf(value);
+  const len = value.length;
+  const res = index === -1 ? str : str.slice(0, index) + str.slice(index + len);
+
+  return res;
 }
 
 /**
@@ -188,8 +198,33 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  // throw new Error('Not implemented');
+  // console.log(str);
+
+  if (
+    str.length === 0 ||
+    typeof str !== 'string' ||
+    typeof str === 'undefined'
+  ) {
+    console.log(str);
+    // return 0;
+  }
+
+  const charCodesArr = [];
+  let sum = 0;
+
+  for (let i = 0; i < str.length; i += 1) {
+    charCodesArr.push(str.charCodeAt(i));
+  }
+
+  // console.log(charCodesArr.length);
+
+  for (let i = 0; i < charCodesArr.length; i += 1) {
+    sum += charCodesArr[i];
+  }
+
+  return sum;
 }
 
 /**
@@ -237,8 +272,12 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  // throw new Error('Not implemented');
+  const minutesStr = minutes.toString().padStart(2, 0);
+  const secondsStr = seconds.toString().padStart(2, 0);
+
+  return `${minutesStr}:${secondsStr}`;
 }
 
 /**
@@ -303,8 +342,16 @@ function containsSubstring(str, substring) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  // throw new Error('Not implemented');
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  let count = 0;
+
+  for (let i = 0; i < str.length; i += 1) {
+    if (vowels.indexOf(str[i]) >= 0) count += 1;
+  }
+
+  return count;
 }
 
 /**
@@ -320,9 +367,13 @@ function countVowels(/* str */) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
-  // return str === str.split('').reverse().join('');
+function isPalindrome(str) {
+  // throw new Error('Not implemented');
+  const regex = /[^A-Za-z0-9]/g;
+  const clearStr = str.toLowerCase().replace(regex, '');
+  const reverseStr = clearStr.split('').reverse().join('');
+
+  return clearStr === reverseStr;
 }
 
 /**
@@ -337,8 +388,12 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  // throw new Error('Not implemented');
+  const words = sentence.split(' ');
+  return words.sort(function sortingByLength(str1, str2) {
+    return str2.length - str1.length;
+  })[0];
 }
 
 /**
@@ -351,8 +406,13 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  // throw new Error('Not implemented');
+  const words = str.split(' ');
+
+  const resArray = words.map((word) => word.split('').reverse().join(''));
+
+  return resArray.join(' ');
 }
 
 /**
@@ -366,8 +426,17 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  // throw new Error('Not implemented');
+  const newStr = str.split('').map((element) => {
+    const checkStr = element.toLowerCase();
+    if (element === checkStr) {
+      return element.toUpperCase();
+    }
+    return element.toLowerCase();
+  });
+
+  return newStr.join('');
 }
 
 /**
@@ -383,8 +452,9 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  // throw new Error('Not implemented');
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -397,8 +467,12 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  // throw new Error('Not implemented');
+  const tempStr = 'Hello, First_Name Last_Name!';
+  const regex = new RegExp(tempStr.replace('First_Name Last_Name', '.*'));
+
+  return value.match(regex)[1];
 }
 
 /**
@@ -432,8 +506,10 @@ function unbracketTag(str) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  // throw new Error('Not implemented');
+  const emailsArr = str.split(';');
+  return emailsArr;
 }
 
 /**
@@ -452,8 +528,40 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  // throw new Error('Not implemented');
+  let cypher = '';
+  const strArr = str.split('');
+  let cypherIndex = 0;
+
+  for (let i = 0; i < strArr.length; i += 1) {
+    if (
+      (strArr[i].charCodeAt(0) >= 65 && strArr[i].charCodeAt(0) <= 90) ||
+      (strArr[i].charCodeAt(0) >= 97 && strArr[i].charCodeAt(0) <= 122)
+    ) {
+      cypherIndex = strArr[i].charCodeAt(0) + 13;
+    } else {
+      cypherIndex = strArr[i].charCodeAt(0);
+    }
+
+    if (
+      strArr[i].charCodeAt(0) >= 97 &&
+      strArr[i].charCodeAt(0) <= 122 &&
+      cypherIndex > 122
+    ) {
+      cypherIndex = cypherIndex - 122 + 96;
+    } else if (
+      strArr[i].charCodeAt(0) >= 65 &&
+      strArr[i].charCodeAt(0) <= 90 &&
+      cypherIndex > 90
+    ) {
+      cypherIndex = cypherIndex - 90 + 64;
+    }
+
+    cypher += String.fromCodePoint(cypherIndex);
+  }
+
+  return cypher;
 }
 
 /**
@@ -480,13 +588,63 @@ function encodeToRot13(/* str */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  // const cardDeck = ['A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
-  //   'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
-  //   'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♥', 'Q♥', 'K♥',
-  //   'A♠', '2♠', '3♠', '4♠', '5♠', '6♠', '7♠', '8♠', '9♠', '10♠', 'J♠', 'Q♠', 'K♠'];
-  throw new Error('Not implemented');
-  // return cardDeck.indexOf(value);
+function getCardId(value) {
+  const cardDeck = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  // throw new Error('Not implemented');
+  return cardDeck.indexOf(value);
 }
 
 module.exports = {
