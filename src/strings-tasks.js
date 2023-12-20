@@ -198,33 +198,33 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(str) {
-  // throw new Error('Not implemented');
+function sumOfCodes(/* str */) {
+  throw new Error('Not implemented');
   // console.log(str);
 
-  if (
-    str.length === 0 ||
-    typeof str !== 'string' ||
-    typeof str === 'undefined'
-  ) {
-    console.log(str);
-    // return 0;
-  }
+  // if (
+  //   str.length === 0 ||
+  //   typeof str !== 'string' ||
+  //   typeof str === 'undefined'
+  // ) {
+  //   console.log(str);
+  //   // return 0;
+  // }
 
-  const charCodesArr = [];
-  let sum = 0;
+  // const charCodesArr = [];
+  // let sum = 0;
 
-  for (let i = 0; i < str.length; i += 1) {
-    charCodesArr.push(str.charCodeAt(i));
-  }
+  // for (let i = 0; i < str.length; i += 1) {
+  //   charCodesArr.push(str.charCodeAt(i));
+  // }
 
-  // console.log(charCodesArr.length);
+  // // console.log(charCodesArr.length);
 
-  for (let i = 0; i < charCodesArr.length; i += 1) {
-    sum += charCodesArr[i];
-  }
+  // for (let i = 0; i < charCodesArr.length; i += 1) {
+  //   sum += charCodesArr[i];
+  // }
 
-  return sum;
+  // return sum;
 }
 
 /**
@@ -467,12 +467,12 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(value) {
-  // throw new Error('Not implemented');
-  const tempStr = 'Hello, First_Name Last_Name!';
-  const regex = new RegExp(tempStr.replace('First_Name Last_Name', '.*'));
+function extractNameFromTemplate(/* value */) {
+  throw new Error('Not implemented');
+  // const tempStr = 'Hello, First_Name Last_Name!';
+  // const regex = new RegExp(tempStr.replace('First_Name Last_Name', '.*'));
 
-  return value.match(regex)[1];
+  // return value.match(regex)[1];
 }
 
 /**
